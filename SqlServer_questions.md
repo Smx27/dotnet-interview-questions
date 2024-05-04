@@ -226,7 +226,90 @@ Here are some basic and advance sql server concepts and questions.
             UnitPrice FOR CategoryID IN (Category1, Category2, Category3, Category4)
         ) AS UnpivotTable;
         ```
+11. **Explain the differences between clustered and non-clustered indexes in SQL Server**
+  - **Answer:** 
+  In SQL Server, indexes play a crucial role in optimizing database performance by facilitating quick data retrieval. The two main types of indexes in SQL Server are clustered indexes and non-clustered indexes, and they differ in their structure and functionality. Here are the key differences:
 
+  **Clustered Index:**
+
+  - Structure: A clustered index determines the physical order of data rows in a table. In other words, it defines the table's physical storage order based on the indexed column(s).
+  - Unique: A table can have only one clustered index, as it dictates the table's physical organization.
+  - Data storage: The data rows in a table with a clustered index are physically stored in the order defined by the clustered index key.
+  - Performance impact: A well-designed clustered index can enhance query performance for range-based searches or when retrieving large portions of data. However, it may slow down data modification operations (such as INSERT, UPDATE, and DELETE) as the physical order needs to be adjusted.
+  
+  **Non-clustered index:**
+
+  - Structure: A non-clustered index creates a separate structure that includes the indexed column(s) and a pointer to the actual data rows.
+  - Multiple indexes: A table can have multiple non-clustered indexes, allowing for different indexing strategies based on query requirements.
+  - Data storage: The data rows in a table with a non-clustered index are stored separately from the index structure. The index structure contains a copy of the indexed column(s) and a pointer to the corresponding data row.
+  - Performance impact: Non-clustered indexes are beneficial for improving query performance by allowing quick data lookup based on the indexed column(s). They generally have minimal impact on data modification operations.
+
+12. **What types of replication are available in SQL Server, and when would you use each?**
+  - **Answer:** 
+  In SQL Server, three main types of replication are available: snapshot replication, transactional replication, and merge replication. Each type serves specific purposes and is used in different scenarios. Here's an overview of each replication type and their typical use cases:
+
+  **Snapshot replication**
+  This involves taking a snapshot of the replicated database and copying it to the subscriber(s). Subsequent changes to the publisher database are not propagated to the subscribers automatically. Instead, a new snapshot needs to be generated and applied to the subscribers to synchronize the data.
+
+  Use cases:
+
+  - Infrequently changing data: Snapshot replication is suitable when the data changes infrequently, and near real-time synchronization is not required.
+  - Reporting or data distribution: It can be used for distributing static data or creating read-only copies of a database for reporting purposes.
+  
+  **Transactional replication**
+  Transactional replication captures and replicates individual data modifications, such as inserts, updates, and deletes, as transactions occur on the publisher database. The transactions are then applied to the subscriber(s) in the same order they occurred.
+
+  Use cases:
+
+  - Real-time data synchronization: Transactional replication is ideal when you need near real-time data synchronization between the publisher and subscribers.
+  - High transaction volume: It is commonly used in scenarios with high volumes of transactions, such as online transaction processing (OLTP) systems.
+  
+  **Merge replication**
+  Merge replication is a bidirectional replication method that allows changes to be made at both the publisher and subscriber databases. It tracks and reconciles the changes made at each replica and resolves conflicts that may arise when the same data is modified at multiple locations.
+
+  Use cases:
+
+  - Mobile or offline scenarios: Merge replication is well-suited for scenarios where disconnected or occasionally connected clients need to synchronize data with the central server.
+  - Collaborative environments: It is commonly used in environments where multiple users or teams must work on the same data set and require bidirectional synchronization.
+
+13. **How would you optimize a slow-performing query in SQL Server?**
+  - **Answer:** 
+  To optimize a slow-performing query in SQL Server, follow these steps:
+
+  - Analyze the query execution plan for potential issues.
+  - Use appropriate indexing to improve query performance.
+  - Retrieve only necessary columns and rows to minimize data retrieval.
+  - Optimize join conditions and types for efficient data retrieval.
+  - Simplify complex queries by breaking them into smaller parts.
+  - Update table and index statistics for accurate query optimization.
+  - Tune server configuration settings based on hardware and workload.
+  - Consider query rewriting or caching to improve performance.
+  - Monitor and optimize I/O performance.
+  - Keep SQL Server updated and maintain the database regularly. 
+
+14. **Describe the ACID properties in the context of SQL Server transactions**Describe the ACID properties in the context of SQL Server transactions
+  - **Answer:**
+  The ACID properties in SQL Server transactions ensure reliability and data integrity:
+
+  - Atomicity: Transactions are treated as a single unit of work. Either all operations are successfully completed and committed, or none of them are, preventing incomplete or inconsistent data.
+  - Consistency: Transactions bring the database from one valid state to another, enforcing predefined rules and constraints. Violations result in rollback to maintain data consistency.
+  - Isolation: Concurrent transactions are isolated from each other to prevent interference and ensure data integrity. Isolation levels define the trade-off between concurrency and consistency.
+  - Durability: Committed transactions are permanently stored, surviving system failures. Data is securely stored and recoverable, providing reliability.
+  These properties maintain SQL Server transactions' reliability, consistency, and integrity, supporting critical business operations.
+
+15. **How would you handle database schema changes in a production environment without causing downtime?**
+  - **Answer:**
+  - To handle database schema changes in a production environment without downtime:
+
+  - Plan and document changes carefully.
+  Use version control to track and manage schema changes.
+  - Test changes in a non-production environment.
+  - Implement blue-green deployment to switch to the updated schema seamlessly.
+  - Utilize database migration tools for controlled deployment.
+  - Schedule changes during maintenance windows or low-traffic periods.
+  - Use online schema changes or tools designed for minimal downtime.
+  - Have a rollback plan in case of issues.
+  
 # Advance Sql Server concepts<a id="Advance-sqlserver-concepts"></a>
 1. **Atomicity, Consistency, Isolation, Durability (ACID) Principle:**
    - ACID is a set of properties that ensures reliability and consistency in database transactions.
