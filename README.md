@@ -14,7 +14,11 @@ Here are some of the key features of .NET and the possible interview questions f
 4. [Asp Net MVC ](#asp-net-mvc)
 5. [Asp Net Core](#asp-net-core)
     1. [Advance concept in dotnet core](#advance-dotnetcore)
+6. [Sql Server with dotnet](./SqlServer_questions.md)
+7. [Basic Good to know docker questions](./Basic_Docker_Questions.md)
 
+8. [Basic Concept of GIT](./Basic_git.md)
+9. [Basic of Azure](./Basic_azure.md)
 
 # Introduction to dotnet <a id="introduction"></a>
 1. **What is .NET Framework, .NET Core, and .NET Standard?**
